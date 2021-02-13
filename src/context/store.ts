@@ -1,7 +1,12 @@
 import { createStore } from "redux";
+import { createWrapper, MakeStore } from "next-redux-wrapper";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import rootReducer from "./modules/rootReducer";
 
-import authentication from "./reducers/authentication.reducer";
+const makeStore: MakeStore = () => {
+  const store = createStore(rootReducer, composeWithDevTools());
 
-const store = createStore(() => []);
+  return store;
+};
 
-export default store;
+export const storeWrapper = createWrapper(makeStore, { debug: false });

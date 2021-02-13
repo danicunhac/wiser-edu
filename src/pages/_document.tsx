@@ -1,6 +1,5 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Head, Main, NextScript, Html } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import SignIn from "./SignIn";
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -17,7 +16,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           <title>Wiser Educação</title>
           <link rel="icon" href="/favicon.ico" />
@@ -28,7 +27,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

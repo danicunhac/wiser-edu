@@ -121,3 +121,9 @@ export const Footer = styled.div`
     color: #9d25b0;
   }
 `;
+
+export const Error = styled.span`
+  font-size: 10px;
+  color: #ff377f;
+  font-weight: 400;
+`;
