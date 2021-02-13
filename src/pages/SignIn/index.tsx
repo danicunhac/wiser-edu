@@ -3,8 +3,12 @@ import Image from "next/image";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import { useCallback, useRef } from "react";
+import { useSelector } from "react-redux";
+
+// import api from "../../services/api";
 
 import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 import {
   ImageWrapper,
@@ -13,7 +17,6 @@ import {
   AnimationContainer,
   Footer,
 } from "./styles";
-import Button from "../../components/Button";
 
 interface SignInFormData {
   email: string;
@@ -24,6 +27,9 @@ const SignIn = () => {
   const imgSrc = "/home-background.png";
 
   const formRef = useRef<FormHandles>(null);
+
+  const user = useSelector((state) => state);
+  console.log(user);
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     console.log(data);
