@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: 767px) {
+  @media (max-width: 519px) {
     align-items: center;
     justify-content: center;
   }
@@ -18,13 +18,6 @@ export const Content = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 700px;
-
-  h1 {
-    font-size: 40px;
-    line-height: 48px;
-    color: #383e71;
-    align-self: flex-start;
-  }
 `;
 
 const appearFromRight = keyframes`
@@ -44,15 +37,44 @@ export const AnimationContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (min-width: 767px) {
-    margin: 0 7em;
+  @media (max-width: 519px) {
+    position: absolute;
+    z-index: 1;
   }
 
-  animation: ${appearFromRight} 1s;
+  @media (min-width: 520px) {
+    margin: 0 7em;
+    animation: ${appearFromRight} 1s;
+  }
 
   form {
     margin: 16px 0 32px;
     width: 256px;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 519px) {
+      margin: 0 0 24px;
+      padding: 28px;
+      background: #faf5ff;
+      border-radius: 8px;
+      width: 311px;
+    }
+
+    h1 {
+      font-size: 40px;
+      line-height: 48px;
+      color: #383e71;
+      align-self: flex-start;
+      margin-bottom: 16px;
+
+      @media (max-width: 519px) {
+        align-self: center;
+        text-align: center;
+        font-size: 24px;
+        line-height: 32px;
+      }
+    }
 
     p {
       text-align: left;
@@ -64,6 +86,12 @@ export const AnimationContainer = styled.div`
 
       color: #989fdb;
       margin-bottom: 43px;
+
+      @media (max-width: 519px) {
+        margin-bottom: 20px;
+        font-size: 12px;
+        max-width: 255px;
+      }
     }
 
     label {
@@ -78,6 +106,10 @@ export const AnimationContainer = styled.div`
 
     > div {
       margin-bottom: 16px;
+
+      @media (max-width: 519px) {
+        margin-bottom: 8px;
+      }
     }
   }
 `;
@@ -86,12 +118,13 @@ export const ImageWrapper = styled.div`
   position: relative;
   max-width: 50%;
   flex: 1;
-  position: relative;
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 767px) {
-    display: none;
+  @media (max-width: 519px) {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
   }
 
   img {

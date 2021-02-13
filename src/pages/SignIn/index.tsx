@@ -117,12 +117,6 @@ const SignIn = () => {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
           setErrors(formRef.current?.getErrors());
-          // addToast({
-          //   type: "error",
-          //   title: "Erro no login",
-          //   description:
-          //     "Ocorreu um erro ao fazer login, cheque as credenciais",
-          // });
           return;
         }
       }
@@ -133,18 +127,19 @@ const SignIn = () => {
   return (
     <Container>
       <ImageWrapper>
-        <Image src={imgSrc} layout="fill" />
+        <Image src={imgSrc} layout="fill" quality={100} />
+        <div id="image-footer"></div>
       </ImageWrapper>
       <AnimationContainer>
         <Content>
-          <h1>
-            Olá, seja
-            <br />
-            bem-vindo!
-          </h1>
-
           <Form ref={formRef} onSubmit={handleSubmit} autoComplete="off">
+            <h1>
+              Olá, seja
+              <br />
+              bem-vindo!
+            </h1>
             <p>Para acessar a plataforma, faça seu login.</p>
+
             <div>
               <label htmlFor="email">E-mail</label>
               <Input
@@ -157,6 +152,7 @@ const SignIn = () => {
                 <Error>{formRef.current?.getErrors().email}</Error>
               )}
             </div>
+
             <div>
               <label htmlFor="password">Senha</label>
               <Input
