@@ -14,7 +14,6 @@ export const Container = styled.div<ContainerProps>`
   padding: 16px;
   width: 100%;
   color: #989fdb;
-  box-shadow: 0 0 1px #989fdb;
 
   display: flex;
   align-items: center;
@@ -39,27 +38,18 @@ export const Container = styled.div<ContainerProps>`
   ${(props) =>
     props.isFilled &&
     css`
-      color: #989fdb;
+      /* color: #989fdb; */
     `}
 
   input {
-    background: transparent;
     flex: 1;
     border: 0;
     color: #383e71;
-    font-size: 10px;
+    font-size: 12px;
+    background: transparent;
 
     &::placeholder {
       color: #989fdb;
-    }
-
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus,
-    &:-webkit-autofill:active {
-      box-shadow: inset 0 0 0px 9999px #232129;
-      -webkit-box-shadow: inset 0 0 0px 9999px #232129;
-      -webkit-text-fill-color: #f4ede8;
     }
   }
 

@@ -1,10 +1,14 @@
 import styled, { keyframes } from "styled-components";
-import { shade } from "polished";
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 767px) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Content = styled.div`
@@ -20,7 +24,6 @@ export const Content = styled.div`
     line-height: 48px;
     color: #383e71;
     align-self: flex-start;
-    margin-left: 80px;
   }
 `;
 
@@ -41,10 +44,14 @@ export const AnimationContainer = styled.div`
   align-items: center;
   justify-content: center;
 
+  @media (min-width: 767px) {
+    margin: 0 7em;
+  }
+
   animation: ${appearFromRight} 1s;
 
   form {
-    margin: 16px 80px 32px;
+    margin: 16px 0 32px;
     width: 256px;
 
     p {
@@ -72,28 +79,24 @@ export const AnimationContainer = styled.div`
     > div {
       margin-bottom: 16px;
     }
-
-    a {
-      color: #f4ede8;
-      display: block;
-      margin-top: 24px;
-      text-decoration: none;
-      transition: color 0.2s;
-
-      &:hover {
-        color: ${shade(0.2, "#f4ede8")};
-      }
-    }
   }
 `;
 
 export const ImageWrapper = styled.div`
   position: relative;
-  max-width: 765px;
+  max-width: 50%;
   flex: 1;
   position: relative;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  img {
+    object-fit: cover;
+  }
 
   &:after {
     content: "";
