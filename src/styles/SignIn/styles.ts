@@ -11,10 +11,6 @@ export const Container = styled.div`
   }
 `;
 
-const Fix = styled.div``;
-
-export default Fix;
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
