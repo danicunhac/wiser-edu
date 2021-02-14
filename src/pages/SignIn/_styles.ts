@@ -20,7 +20,7 @@ export const Content = styled.div`
   max-width: 700px;
 `;
 
-const appearFromRight = keyframes`
+export const appearFromRight = keyframes`
   from {
     opacity: 0;
     transform: translateX(50px);
