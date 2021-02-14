@@ -3,10 +3,9 @@ import Image from "next/image";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import * as Yup from "yup";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { DefaultRootState, useDispatch, useSelector } from "react-redux";
 
-import api from "../../services/api";
 import { useToast } from "../../hooks/toast";
 import getValidationErrors from "../../utils/getValidationErrors";
 
@@ -14,7 +13,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 import { User } from "../../context/modules/authentication/types";
-import { addUser } from "../../context/modules/authentication/actions";
+import { addUserRequest } from "../../context/modules/authentication/actions";
 
 import {
   ImageWrapper,
@@ -25,9 +24,11 @@ import {
   Error,
 } from "./styles";
 
-interface UserData extends DefaultRootState {
+interface IAuthenticationState extends DefaultRootState {
   authentication: {
     user: User;
+    nonExistentUserCheck: boolean;
+    alreadyLoggedCheck: boolean;
   };
 }
 
@@ -38,79 +39,66 @@ interface Errors {
 
 const SignIn = () => {
   const imgSrc = "/home-background.png";
+  const { authentication: state } = useSelector(
+    (state: IAuthenticationState) => state
+  );
 
   const formRef = useRef<FormHandles>(null);
+
   const { addToast } = useToast();
 
   const dispatch = useDispatch();
-  const { authentication: state } = useSelector((state: UserData) => state);
 
   const [errors, setErrors] = useState<Errors>({ email: null, password: null });
-  const [users, setUsers] = useState<User[]>();
 
-  useEffect(() => {
-    api.get("users").then((response) => {
-      setUsers(response.data);
+  const checkState = useCallback(() => {
+    if (state.alreadyLoggedCheck) {
+      addToast({
+        type: "info",
+        title: "Um usuário já está logado!",
+        description: "Recarregue a página para deslogar",
+      });
+      return;
+    }
+
+    if (state.nonExistentUserCheck) {
+      addToast({
+        type: "error",
+        title: "Falha no login, cheque as credenciais",
+      });
+      return;
+    }
+
+    addToast({
+      type: "success",
+      title: "Login realizado com sucesso!",
     });
-  }, [state]);
+    return;
+  }, []);
 
   const handleSubmit = useCallback(
     async (data: User) => {
       try {
+        console.log(state);
         setErrors({ email: null, password: null });
         formRef.current?.setErrors({});
-        if (!state.user) {
-          const schema = Yup.object().shape({
-            email: Yup.string()
-              .required("E-mail obrigatório")
-              .email("Digite um e-mail válido"),
-            password: Yup.string().required("Senha obrigatória"),
-          });
 
-          await schema.validate(data, {
-            abortEarly: false,
-          });
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required("E-mail obrigatório")
+            .email("Digite um e-mail válido"),
+          password: Yup.string().required("Senha obrigatória"),
+        });
 
-          const foundUserByEmail = users.filter(
-            (mappedUser) => mappedUser.email === data.email
-          );
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-          if (foundUserByEmail.length !== 0) {
-            const checkPassword = foundUserByEmail.filter(
-              (mappedUser) => mappedUser.password === data.password
-            );
+        dispatch(addUserRequest(data));
 
-            if (checkPassword.length !== 0) {
-              dispatch(addUser(data));
-              addToast({
-                type: "success",
-                title: "Login realizado com sucesso!",
-                description: "Acesso com usuário já existente",
-              });
-              return state;
-            }
-
-            addToast({
-              type: "error",
-              title: "Falha no login, cheque as credenciais",
-            });
-            return state;
-          }
-
-          api.post("/users", data);
-          dispatch(addUser(data));
-          addToast({
-            type: "success",
-            title: "Login realizado com sucesso!",
-            description: "Um novo usuário foi criado.",
-          });
-        } else {
-          addToast({
-            type: "info",
-            title: "Um usuário já está logado!",
-            description: "Recarregue a página para deslogar",
-          });
-        }
+        setTimeout(() => {
+          checkState();
+        }, 500);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -120,7 +108,7 @@ const SignIn = () => {
         }
       }
     },
-    [dispatch, users, addToast]
+    [addToast, dispatch]
   );
 
   return (

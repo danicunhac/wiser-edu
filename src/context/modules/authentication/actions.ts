@@ -1,10 +1,37 @@
-import { User } from "./types";
+import { ActionTypes, User } from "./types";
 
-export function addUser(user: User) {
+export function addUserRequest(user: User) {
   return {
-    type: "ADD_USER",
+    type: ActionTypes.addUserRequest,
     payload: {
       user,
+    },
+  };
+}
+
+export function addUserSuccess(user: User) {
+  return {
+    type: ActionTypes.addUserSuccess,
+    payload: {
+      user,
+    },
+  };
+}
+
+export function addUserFailureAlreadyLogged(userEmail: string) {
+  return {
+    type: ActionTypes.addUserFailureAlreadyLogged,
+    payload: {
+      userEmail,
+    },
+  };
+}
+
+export function addUserFailureNonExists(userEmail: string) {
+  return {
+    type: ActionTypes.addUserFailureNonExists,
+    payload: {
+      userEmail,
     },
   };
 }
