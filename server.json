@@ -6,9 +6,9 @@
       "password": "123456"
     },
     {
-      "email": "teste@wiser.com",
-      "password": "teste",
-      "id": 2
+      "id": 2,
+      "email": "teste@wiser.com.br",
+      "password": "123456"
     }
   ]
 }
