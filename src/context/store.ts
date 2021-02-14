@@ -17,7 +17,6 @@ const makeStore: MakeStore = () => {
   );
 
   sagaMiddleware.run(rootSaga);
-  console.log(store);
   return store;
 };
 

@@ -79,7 +79,6 @@ const SignIn = () => {
   const handleSubmit = useCallback(
     async (data: User) => {
       try {
-        console.log(state);
         setErrors({ email: null, password: null });
         formRef.current?.setErrors({});
 
