@@ -29,7 +29,7 @@ Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o
 
 ## Funcionamento
 
-**Nota: para realizar login com sucesso, é necessário utilizar dados pré-existentes no arquivo server.json (email: test@wiser.com.br, senha: 123456)**
+**Nota: para realizar login com sucesso, é necessário utilizar dados pré-existentes no arquivo server.json (email: teste@wiser.com.br, senha: 123456)**
 
 Ao tentar realizar login com os dados digitados, o Yup faz a validação dos dados e são mostrados em tela os campos inválidos.
 Caso os dados não coincidam com o de nenhum usuário cadastrado, um "toast" aparece em tela e informa ao usuário.
