@@ -1,33 +1,47 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Iniciando com o App
 
-First, run the development server:
+Primeiro, instale as dependências executando no terminal:
+
+```bash
+npm install
+# ou
+yarn
+```
+Em seguida, inicie o servidor executando no terminal:
+
+```bash
+npm run server
+# ou
+yarn server
+```
+
+Por último, inicie a aplicação executando:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Funcionamento
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**Nota: para realizar login com sucesso, é necessário utilizar dados pré-existentes no arquivo server.json (email: test@wiser.com.br, senha: 123456)**
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Ao tentar realizar login com os dados digitados, o Yup faz a validação dos dados e são mostrados em tela os campos inválidos.
+Caso os dados não coincidam com o de nenhum usuário cadastrado, um "toast" aparece em tela e informa ao usuário.
+Caso um usuário já esteja logado, um "toast" aparece e informa ao usuário.
+Caso todos os dados tenham sido validados corretamente e o usuário esteja cadastrado, um "toast" aparece com message de sucesso,
+e o usuário passa a ser mantido no estado do Redux.
 
-## Learn More
+## Saiba mais
 
-To learn more about Next.js, take a look at the following resources:
+A aplicação consiste em uma página de login, desenvolvida com React, React Hooks, NextJS, Typescript, Redux, styled-components, Redux Saga, Axios e Yup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
+## Deploy no Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
