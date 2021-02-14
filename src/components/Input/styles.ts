@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { darken } from "polished";
 
 interface ContainerProps {
   isFocused: boolean;
@@ -31,14 +30,13 @@ export const Container = styled.div<ContainerProps>`
   ${(props) =>
     props.isFocused &&
     css`
-      color: #989fdb;
-      border-color: ${darken(0.2, "#989fdb")};
+      border-color: #9d25b0;
     `}
 
   ${(props) =>
     props.isFilled &&
     css`
-      /* color: #989fdb; */
+      border-color: #9d25b0;
     `}
 
   input {
