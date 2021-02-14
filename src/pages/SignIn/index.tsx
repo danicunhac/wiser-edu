@@ -22,7 +22,7 @@ import {
   AnimationContainer,
   Footer,
   Error,
-} from "./_styles";
+} from "./styles";
 
 interface IAuthenticationState extends DefaultRootState {
   authentication: {

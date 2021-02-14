@@ -11,6 +11,10 @@ export const Container = styled.div`
   }
 `;
 
+const Fix = styled.div``;
+
+export default Fix;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +24,7 @@ export const Content = styled.div`
   max-width: 700px;
 `;
 
-export const appearFromRight = keyframes`
+const appearFromRight = keyframes`
   from {
     opacity: 0;
     transform: translateX(50px);
