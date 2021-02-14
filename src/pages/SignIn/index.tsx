@@ -4,8 +4,7 @@ import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import * as Yup from "yup";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { DefaultRootState, useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { DefaultRootState, useDispatch, useSelector } from "react-redux";
 
 import api from "../../services/api";
 import { useToast } from "../../hooks/toast";
@@ -128,7 +127,6 @@ const SignIn = () => {
     <Container>
       <ImageWrapper>
         <Image src={imgSrc} layout="fill" quality={100} />
-        <div id="image-footer"></div>
       </ImageWrapper>
       <AnimationContainer>
         <Content>

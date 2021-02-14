@@ -6,7 +6,7 @@ import { storeWrapper } from "../context/store";
 
 import GlobalStyle from "../styles/global";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <AppProvider>
       <Component {...pageProps} />
@@ -15,4 +15,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default storeWrapper.withRedux(MyApp);
+export default storeWrapper.withRedux(App);
