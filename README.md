@@ -9,15 +9,7 @@ npm install
 # ou
 yarn
 ```
-Em seguida, inicie o servidor executando no terminal:
-
-```bash
-npm run server
-# ou
-yarn server
-```
-
-Por último, inicie a aplicação executando:
+Em seguida, inicie a aplicação executando no terminal:
 
 ```bash
 npm run dev
